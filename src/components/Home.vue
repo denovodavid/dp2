@@ -1,9 +1,5 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>idk I guess we'll add stuff here later :P</p>
-    <h2>Vue.js Essential Links</h2>
-    
     <div class="banner">
       <div class="inner">
         <div class="banner-title">
@@ -12,6 +8,15 @@
       </div>
     </div>
     
+    <div class="b-container">
+      <div class="b-row">
+        <div class="b-col">
+          <h1>{{ msg }}</h1>
+          <p>idk I guess we'll add stuff here later :P</p>
+          <h2>Vue.js Essential Links</h2>   
+        </div>
+      </div>
+    </div>
     <ul>
       <li>
         <a

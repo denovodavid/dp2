@@ -4,8 +4,8 @@
     <header>
       <nav>
         <div class="nav-inner">
-          <div class="row">
-            <div class="col">
+          <div class="b-row">
+            <div class="b-col">
               <ul class="nav-menu">
                 <li>
                   <router-link to="/">Home</router-link>
