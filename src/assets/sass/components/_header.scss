@@ -1,0 +1,28 @@
+header
+{
+	position: relative;
+	height: $header-height;
+
+	nav
+	{
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: $header-height;
+		position: fixed;
+		background: $grey-e;
+
+		>.nav-inner
+		{
+			width: 100%;
+
+			.nav-menu
+			{
+				li 
+				{
+					display: inline-block;
+				}
+			}
+		}
+	}
+}

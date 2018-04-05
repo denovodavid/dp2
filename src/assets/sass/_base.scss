@@ -1,0 +1,14 @@
+// place basic style overrides here to html elements
+// one I like to do for example is removing the default bullet styling of <ul> elements
+
+ul 
+{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+body
+{
+	height: 4000px;
+}

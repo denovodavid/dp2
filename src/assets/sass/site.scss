@@ -1,0 +1,11 @@
+// import base
+@import '_base.scss';
+
+// import globals
+@import 'globals/_colors.scss';
+@import 'globals/_variables.scss';
+
+// import components
+@import 'components/_banner.scss';
+@import 'components/_header.scss';
+
