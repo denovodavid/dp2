@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 
 import inventory from './inventory'
+import sales from './sales'
 
 Vue.config.productionTip = false
 
@@ -15,9 +16,11 @@ new Vue({
   components: { App },
   template: '<App/>',
   data: {
-    ...inventory.data
+    ...inventory.data,
+    ...sales.data
   },
   methods: {
-    ...inventory.methods
+    ...inventory.methods,
+    ...sales.methods
   }
 })
