@@ -8,14 +8,14 @@ export default {
         category: 'Vitamins',
         price: 5.99,
         quantity: 2,
-        id: uuidv4()
+        id: '5ccdd07c-b5c2-417c-a2ef-bcbe422d06c2'
       },
       {
         name: 'Vitamin E Cream',
         category: 'Vitamins',
         price: 11.99,
         quantity: 3,
-        id: uuidv4()
+        id: '403d687a-e6df-4e74-b4f8-5f6ac42c130f'
       }
     ]
   },
