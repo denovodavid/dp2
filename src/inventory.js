@@ -29,9 +29,14 @@ export default {
       ) {
         item.id = uuidv4()
         this.inventory.push(item)
+        return item.id
       }
+      return null
     },
-    removeInventoryItem (index) {
+    removeInventoryItem (id) {
+      const item = this.inventory.find(item => item.id === id)
+      if (item == null) return
+      const index = this.inventory.indexOf(item)
       this.inventory.splice(index, 1)
     }
   }

@@ -35,7 +35,7 @@
       </tbody>
       <tbody v-show="editInventory">
         <tr
-          v-for="(item, index) in $root.$data.inventory"
+          v-for="item in $root.$data.inventory"
           :key="item.id"
         >
           <td><input type="text" v-model="item.name"></td>
@@ -43,7 +43,7 @@
           <td><input type="number" v-model="item.price"></td>
           <td><input type="number" v-model="item.quantity"></td>
           <td v-show="editInventory">
-            <button @click="$root.removeInventoryItem(index)">Remove</button>
+            <button @click="$root.removeInventoryItem(item.id)">Remove</button>
           </td>
         </tr>
       </tbody>
