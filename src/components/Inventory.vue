@@ -7,6 +7,11 @@
     <span>Quantity: </span><input type="number" v-model="newItem.quantity"><br>
     <button @click="addInventoryItem">Add To Inventory</button>
     <br><br>
+    <button
+      @click="editInventory = !editInventory"
+    >
+      {{ editInventory ? 'Done' : 'Edit' }}
+    </button>
     <table border="1">
       <thead>
         <tr>
@@ -14,9 +19,10 @@
           <th>Category</th>
           <th>Price</th>
           <th>Quantity</th>
+          <th v-show="editInventory">Remove</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-show="!editInventory">
         <tr
           v-for="item in $root.$data.inventory"
           :key="item.id"
@@ -25,6 +31,20 @@
           <td>{{ item.category }}</td>
           <td>{{ item.price }}</td>
           <td>{{ item.quantity }}</td>
+        </tr>
+      </tbody>
+      <tbody v-show="editInventory">
+        <tr
+          v-for="item in $root.$data.inventory"
+          :key="item.id"
+        >
+          <td><input type="text" v-model="item.name"></td>
+          <td><input type="text" v-model="item.category"></td>
+          <td><input type="number" v-model="item.price"></td>
+          <td><input type="number" v-model="item.quantity"></td>
+          <td v-show="editInventory">
+            <button @click="$root.removeInventoryItem(item.id)">Remove</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -41,7 +61,8 @@ export default {
         category: '',
         price: 0,
         quantity: 1
-      }
+      },
+      editInventory: false
     }
   },
   methods: {
