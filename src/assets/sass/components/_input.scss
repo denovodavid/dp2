@@ -1,0 +1,46 @@
+input[type="text"],
+input[type="number"]
+{
+	width: 100%;
+	border: 1px solid $grey-a;
+	border-radius: 5px;
+	padding: 5px 10px;
+	background: none;
+	box-shadow: none;
+
+	&:focus
+	{
+		outline: none;
+		box-shadown: none;
+		border-color: $black;
+	}
+}
+
+label
+{
+	display: block;
+	margin: 0px;
+}
+
+.input-block
+{
+	display: flex;
+	align-items: stretch;
+	margin-bottom: 15px;
+
+	.input-column
+	{
+		width: 100%;
+		padding: 0px 15px;
+
+		&.half
+		{
+			display: inline-block;
+		}
+
+		button
+		{
+			margin: 20px auto;
+		}
+	}
+}

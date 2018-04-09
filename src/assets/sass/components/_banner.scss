@@ -1,0 +1,28 @@
+/* Template: 
+	<div class="banner">
+      <div class="inner">
+        <div class="banner-title">
+          <span>Banner Title</span>
+        </div>
+      </div>
+    </div>
+*/
+
+.banner
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: $banner-height;
+	background: $grey-c;
+
+	>.inner
+	{
+		.banner-title
+		{
+			font-family: 'Helvetica';
+			font-size: 40px;
+			color: $black;
+		}
+	}
+}
