@@ -24,20 +24,10 @@ label
 
 .input-block
 {
-	display: flex;
-	align-items: stretch;
 	margin-bottom: 15px;
 
 	.input-column
 	{
-		width: 100%;
-		padding: 0px 15px;
-
-		&.half
-		{
-			display: inline-block;
-		}
-
 		button
 		{
 			margin: 20px auto;

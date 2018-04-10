@@ -10,30 +10,38 @@
     <div class="content-block centered">
       <div class="inner">
         <div class="input-block">
-          <div class="input-column">
-            <label>Name</label>
-            <input type="text" v-model.trim="newItem.name"><br>
+          <div class="row">
+            <div class="column input-column">
+              <label>Name</label>
+              <input type="text" v-model.trim="newItem.name"><br>
+            </div>
           </div>
         </div>
         <div class="input-block">
-          <div class="input-column">
-            <label>Category</label>
-            <input type="text" v-model.trim="newItem.category"><br>
+          <div class="row">
+            <div class="column input-column">
+              <label>Category</label>
+              <input type="text" v-model.trim="newItem.category"><br>
+            </div>
           </div>
         </div>
         <div class="input-block">
-          <div class="input-column half">
-            <label>Price</label>
-            <input type="number" v-model="newItem.price"><br>
-          </div>
-          <div class="input-column half">
-            <label>Quantity</label>
-            <input type="number" v-model="newItem.quantity"><br>
+          <div class="row">
+            <div class="column input-column half">
+              <label>Price</label>
+              <input type="number" v-model="newItem.price"><br>
+            </div>
+            <div class="column input-column half">
+              <label>Quantity</label>
+              <input type="number" v-model="newItem.quantity"><br>
+            </div>
           </div>
         </div>
         <div class="input-block">
-          <div class="input-column">
-            <button @click="addInventoryItem">Add To Inventory</button>
+          <div class="row">
+            <div class="column input-column">
+              <button @click="addInventoryItem">Add To Inventory</button>
+            </div>
           </div>
         </div>
         <br><br>

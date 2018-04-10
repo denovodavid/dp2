@@ -1,4 +1,18 @@
 .row
 {
+	display: flex;
+	align-items: stretch;
 	max-width: 1200px;
+
+	.column
+	{
+		width: 100%;
+		padding: 0px 15px;
+
+		&.half
+		{
+			display: inline-block;
+			width: auto;
+		}
+	}
 }
