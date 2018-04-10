@@ -1,12 +1,16 @@
 <template>
   <div class="hello">
-    <div class="banner">
-      <div class="inner">
-        <div class="banner-title">
-          <span>Home</span>
-        </div>
-      </div>
-    </div>
+    <banner text="Home">
+      <p :style="{
+        textAlign: 'center',
+        maxWidth: '30rem'
+      }">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        Provident aut cumque vitae soluta, blanditiis doloribus at quas
+        incidunt iusto, perspiciatis dolorum non nostrum atque in saepe
+        placeat repellendus a ut.
+      </p>
+    </banner>
     <div class="b-container">
       <div class="b-row">
         <div class="b-col">
@@ -98,8 +102,13 @@
 </template>
 
 <script>
+import Banner from '@/components/Banner'
+
 export default {
   name: 'Home',
+  components: {
+    Banner
+  },
   data () {
     return {
       msg: 'This is Home page!'
