@@ -5,17 +5,15 @@
         textAlign: 'center',
         maxWidth: '30rem'
       }">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-        Provident aut cumque vitae soluta, blanditiis doloribus at quas
-        incidunt iusto, perspiciatis dolorum non nostrum atque in saepe
-        placeat repellendus a ut.
+        The People's Health Pharmacy is a locally-owned pharmacy that strives to provide
+        the community with quality service and the widest range of products at the lowest
+        prices.
       </p>
     </banner>
     <div class="b-container">
       <div class="b-row">
         <div class="b-col">
-          <h1>{{ msg }}</h1>
-          <p>idk I guess we'll add stuff here later :P</p>
+          <p>Remember to be kind to customers and handle sales with care!</p>
           <h2>Vue.js Essential Links</h2>
         </div>
       </div>
@@ -111,7 +109,6 @@ export default {
   },
   data () {
     return {
-      msg: 'This is Home page!'
     }
   }
 }
