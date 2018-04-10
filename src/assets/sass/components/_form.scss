@@ -22,15 +22,33 @@ label
 	margin: 0px;
 }
 
-.input-block
+.form-container
 {
-	margin-bottom: 15px;
+	width: 500px;
+	margin: auto;
 
-	.input-column
+	.input-block
 	{
-		button
+		margin-bottom: 15px;
+
+		.input-column
 		{
-			margin: 10px auto;
+			button
+			{
+				margin: 10px auto;
+			}
+		}
+
+		.buttons-container
+		{
+			margin-bottom: 50px;
+			padding: 20px 0px;
+
+			button
+			{
+				display: inline-block;
+				width: 200px;
+			}
 		}
 	}
 }

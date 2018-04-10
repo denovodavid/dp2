@@ -1,61 +1,116 @@
 <template>
-  <div>
-    <h1>This is Sales page!</h1>
-    <span>Transaction Number: </span><input type="number" v-model.trim="newRecord.transactionNumber"><br>
-    <span>Transaction Date: </span><input type="text" v-model.trim="newRecord.transDate"><br>
-    <span>Inventory id: </span><input type="text" v-model="newRecord.name"><br>
-    <span>Quantity: </span><input type="number" v-model="newRecord.quantity"><br>
-    <span>Price: </span><input type="number" v-model="newRecord.priceEach"><br>
-    <span>Total: </span><input type="number" v-model="newRecord.total"><br>
-    <button @click="addSalesRecord">Add To Sales</button>
-    <br><br>
-    <button
-      @click="editSales = !editSales"
-    >
-      {{ editSales ? 'Done' : 'Edit' }}
-    </button>
-        <table border="1">
-      <thead>
-        <tr>
-          <th>Transaction Number</th>
-          <th>Transaction Date</th>
-          <th>Inventory id</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Total</th>
-          <th v-show="editSales">Remove</th>
-        </tr>
-      </thead>
-      <tbody v-show="!editSales">
-        <tr
-          v-for="record in $root.$data.sales"
-          :key="record.id"
-        >
-          <td>{{ record.transactionNumber }}</td>             <!--TODO: auto generate-->
-          <td>{{ record.transactionDate }}</td>               <!--TODO: date picker-->
-          <td>{{ record.id }}</td>                            <!--TODO: intergrate with inventory id-->
-          <td>{{ record.quantity }}</td>                      <!--TODO: change inventory items quantity-->
-          <td>{{ record.priceEach}}</td>
-          <td>{{ record.total }}</td>
-        </tr>
-      </tbody>
-      <tbody v-show="editSales">
-        <tr
-          v-for="record in $root.$data.sales"
-          :key="record.id"
-        >
-          <td><input type="number" v-model="record.transactionNumber"></td>
-          <td><input type="text" v-model="record.transactionDate"></td>
-          <td><input type="text" v-model="record.id"></td>
-          <td><input type="number" v-model="record.quantity"></td>
-          <td><input type="number" v-model="record.priceEach"></td>
-          <td><input type="number" v-model="record.total"></td>
-          <td v-show="editSales">
-            <button @click="$root.removeSalesRecord(record.id)">Remove</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div id="sales" class="page">
+    <div class="banner">
+      <div class="inner">
+        <div class="banner-title">
+          <span>Sales</span>
+        </div>
+      </div>
+    </div>
+    <div class="content-block centered">
+      <div class="inner">
+        <div class="form-container">
+          <div class="input-block">
+            <div class="row">
+              <div class="column input-column half">
+                <label>Transaction Number</label>
+                <input type="number" v-model.trim="newRecord.transactionNumber">
+              </div>
+              <div class="column input-column half">
+                <label>Transaction Date</label>
+                <input type="text" v-model.trim="newRecord.transDate"><br>
+              </div>
+            </div>
+          </div>
+          <div class="input-block">
+            <div class="row">
+              <div class="column input-column">
+                <label>Inventory id</label>
+                <input type="text" v-model="newRecord.name"><br>
+              </div>
+            </div>
+          </div>
+          <div class="input-block">
+            <div class="row">
+              <div class="column input-column half">
+                <label>Quantity</label>
+                <input type="number" v-model="newRecord.quantity"><br>
+              </div>
+              <div class="column input-column half">
+                <label>Price</label>
+                <input type="number" v-model="newRecord.priceEach"><br>
+              </div>
+            </div>
+          </div>
+          <div class="input-block">
+            <div class="row">
+              <div class="column input-column">
+                <label>Total</label>
+                <input type="number" v-model="newRecord.total"><br>
+              </div>
+            </div>
+          </div>
+          <div class="input-block">
+            <div class="buttons-container">
+              <div class="row">
+                <div class="column">
+                  <button id="sales-add-button" @click="addSalesRecord">Add To Sales</button>
+                  <button id="sales-edit-button"
+                    @click="editSales = !editSales"
+                  >
+                    {{ editSales ? 'Done' : 'Edit' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-container">
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Transaction Number</th>
+                <th>Transaction Date</th>
+                <th>Inventory id</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th v-show="editSales">Remove</th>
+              </tr>
+            </thead>
+            <tbody v-show="!editSales">
+              <tr
+                v-for="record in $root.$data.sales"
+                :key="record.id"
+              >
+                <td>{{ record.transactionNumber }}</td>             <!--TODO: auto generate-->
+                <td>{{ record.transactionDate }}</td>               <!--TODO: date picker-->
+                <td>{{ record.id }}</td>                            <!--TODO: intergrate with inventory id-->
+                <td>{{ record.quantity }}</td>                      <!--TODO: change inventory items quantity-->
+                <td>{{ record.priceEach}}</td>
+                <td>{{ record.total }}</td>
+              </tr>
+            </tbody>
+            <tbody v-show="editSales">
+              <tr
+                v-for="record in $root.$data.sales"
+                :key="record.id"
+              >
+                <td><input type="number" v-model="record.transactionNumber"></td>
+                <td><input type="text" v-model="record.transactionDate"></td>
+                <td><input type="text" v-model="record.id"></td>
+                <td><input type="number" v-model="record.quantity"></td>
+                <td><input type="number" v-model="record.priceEach"></td>
+                <td><input type="number" v-model="record.total"></td>
+                <td v-show="editSales">
+                  <button @click="$root.removeSalesRecord(record.id)">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

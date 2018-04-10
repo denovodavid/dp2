@@ -40,12 +40,16 @@
           </div>
           <div class="input-block">
             <div class="buttons-container">
-                <button id="inventory-add-button" @click="addInventoryItem">Add To Inventory</button>
-                <button id="inventory-edit-button"
-                  @click="editInventory = !editInventory"
-                >
-                  {{ editInventory ? 'Done' : 'Edit' }}
-                </button>
+              <div class="row">
+                <div class="column">
+                  <button id="inventory-add-button" @click="addInventoryItem">Add To Inventory</button>
+                  <button id="inventory-edit-button"
+                    @click="editInventory = !editInventory"
+                  >
+                    {{ editInventory ? 'Done' : 'Edit' }}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
