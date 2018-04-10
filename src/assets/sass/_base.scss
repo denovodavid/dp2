@@ -8,9 +8,37 @@ ul
 	padding: 0px;
 }
 
+a 
+{
+	position: relative;
+
+	&::after
+	{
+		content: "";
+		display: flex;
+		width: 0px;
+		height: 1px;
+		position: absolute;
+		bottom: 5px;
+		margin: auto;
+		background: $black;
+		transition: width 0.2s linear;
+	}
+
+	&:hover
+	{
+		text-decoration: none;
+
+		&::after
+		{
+			width: 100%;
+		}
+	}
+}
+
 body
 {
-	
+	height: 5000px;
 }
 
 
