@@ -2,7 +2,7 @@ button
 {
 	display: block;
 	margin: auto;
-	border: 1px solid $grey-a;
+	border: 2px solid $grey-a;
 	border-radius: 20px;
 	padding: 5px 20px;
 	background: none;
@@ -15,7 +15,13 @@ button
 
 	&:hover
 	{
-		background: black;
+		border-color: $green;
+		background: $green;
 		color: $white;
+	}
+
+	&:focus
+	{
+		outline: none;
 	} 
 }

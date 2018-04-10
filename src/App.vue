@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
     <header>
       <nav>
         <div class="nav-inner">
-          <div class="b-row">
-            <div class="b-col">
+          <div class="row">
+            <div class="column">
+              <div class="logo-container">
+                <img src="./assets/img/logo.png" alt="" class="logo">
+              </div>
               <ul class="nav-menu">
                 <li>
                   <router-link to="/">Home</router-link>
@@ -37,7 +39,7 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', 'Lato', 'Helvetica', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

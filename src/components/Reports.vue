@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <h1>This is Reports page!</h1>
-  </div>
+	<div class="banner">
+		<div class="inner">
+		  <div class="banner-title">
+		    <span>Reports</span>
+		  </div>
+		</div>
+	</div>
 </template>
 
 <script>

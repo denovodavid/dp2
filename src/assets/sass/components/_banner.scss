@@ -14,15 +14,17 @@
 	align-items: center;
 	justify-content: center;
 	height: $banner-height;
-	background: $grey-c;
+	// background: $grey-c;
+	background: $green;
 
 	>.inner
 	{
 		.banner-title
 		{
-			font-family: 'Helvetica';
-			font-size: 40px;
-			color: $black;
+			font-family: 'ScienceFair';
+			font-size: 50px;
+			letter-spacing: 5px;
+			color: $white;
 		}
 	}
 }

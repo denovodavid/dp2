@@ -2,17 +2,18 @@ input[type="text"],
 input[type="number"]
 {
 	width: 100%;
-	border: 1px solid $grey-a;
+	border: 2px solid $grey-a;
 	border-radius: 5px;
 	padding: 5px 10px;
 	background: none;
 	box-shadow: none;
+	transition: border-color 0.2s linear;
 
 	&:focus
 	{
 		outline: none;
 		box-shadown: none;
-		border-color: $black;
+		border-color: $green;
 	}
 }
 
