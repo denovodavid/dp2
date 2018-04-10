@@ -3,27 +3,23 @@
     <header>
       <nav>
         <div class="nav-inner">
-          <div class="row">
-            <div class="column">
-              <div class="logo-container">
-                <img src="./assets/img/logo.png" alt="" class="logo">
-              </div>
-              <ul class="nav-menu">
-                <li>
-                  <router-link to="/">Home</router-link>
-                </li>
-                <li>
-                  <router-link to="/inventory">Inventory</router-link>
-                </li>
-                <li>
-                  <router-link to="/sales">Sales</router-link>
-                </li>
-                <li>
-                  <router-link to="/reports">Reports</router-link>
-                </li>
-              </ul>
-            </div>
+          <div class="logo-container">
+            <img src="./assets/img/logo.png" alt="" class="logo">
           </div>
+          <ul class="nav-menu">
+            <li>
+              <router-link to="/">Home</router-link>
+            </li>
+            <li>
+              <router-link to="/inventory">Inventory</router-link>
+            </li>
+            <li>
+              <router-link to="/sales">Sales</router-link>
+            </li>
+            <li>
+              <router-link to="/reports">Reports</router-link>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>

@@ -16,17 +16,22 @@ header
 		background: $dark-green;
 		box-shadow: 0px -10px 20px 8px rgba(0, 0, 0, 0.5);
 
-		>.nav-inner
+		.nav-inner
 		{
+			display: flex;
+			align-items: center;
 			width: 100%;
+			max-width: 1200px;
+			position: relative;
+			margin: auto;
 
 			.logo-container
 			{
-				display: flex;
+				display: inline-flex;
 				align-items: center;
 				justify-content: center;
 				height: $header-height;
-				position: absolute;
+				// position: absolute;
 				top: 0px;
 				left: 15px;
 
@@ -39,7 +44,8 @@ header
 
 			.nav-menu
 			{
-				float: right;
+				position: absolute;
+				right: 0px;
 
 				li 
 				{
