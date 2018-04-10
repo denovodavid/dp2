@@ -1,0 +1,27 @@
+#inventory.page
+{
+	.form-container
+	{
+		.buttons-container
+		{
+			margin-bottom: 50px;
+			padding: 20px 0px;
+
+			button
+			{
+				display: inline-block;
+				width: 200px;
+
+				&#inventory-edit-button
+				{
+					float: right;
+				}
+			}
+		}
+	}
+
+	.table-container
+	{
+
+	}
+}
