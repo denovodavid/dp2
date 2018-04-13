@@ -1,17 +1,19 @@
 <template>
   <div class="hello">
-    <div class="banner">
-      <div class="inner">
-        <div class="banner-title">
-          <span>Home</span>
-        </div>
-      </div>
-    </div>
+    <banner text="Home">
+      <p :style="{
+        textAlign: 'center',
+        maxWidth: '30rem'
+      }">
+        The People's Health Pharmacy is a locally-owned pharmacy that strives to provide
+        the community with quality service and the widest range of products at the lowest
+        prices.
+      </p>
+    </banner>
     <div class="b-container">
       <div class="b-row">
         <div class="b-col">
-          <h1>{{ msg }}</h1>
-          <p>idk I guess we'll add stuff here later :P</p>
+          <p>Remember to be kind to customers and handle sales with care!</p>
           <h2>Vue.js Essential Links</h2>
         </div>
       </div>
@@ -98,11 +100,15 @@
 </template>
 
 <script>
+import Banner from '@/components/Banner'
+
 export default {
   name: 'Home',
+  components: {
+    Banner
+  },
   data () {
     return {
-      msg: 'This is Home page!'
     }
   }
 }
