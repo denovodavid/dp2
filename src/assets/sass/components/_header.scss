@@ -47,6 +47,11 @@ header
 				position: absolute;
 				right: 0px;
 
+				@media(max-width: $breakpoint-large)
+				{
+					display: none;
+				}
+
 				li 
 				{
 					display: inline-block;
@@ -68,6 +73,16 @@ header
 							opacity: 1;
 						}
 					}
+				}
+			}
+			
+			.hamburger-container
+			{
+				right: 0px;
+
+				@media(min-width: $breakpoint-large)
+				{
+					display: none;
 				}
 			}
 		}

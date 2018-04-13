@@ -20,6 +20,13 @@
               <router-link to="/reports">Reports</router-link>
             </li>
           </ul>
+          <div class="hamburger-container">
+            <div class="hamburger">
+              <div class="hamburger-segment segment-1"></div>
+              <div class="hamburger-segment segment-2"></div>
+              <div class="hamburger-segment segment-3"></div>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
