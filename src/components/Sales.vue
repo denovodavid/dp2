@@ -25,6 +25,7 @@
           <div class="input-block">
             <div class="row">
               <div class="column input-column">
+                <label>Please Select the Inventory Item: </label>
                 <select v-model="selected">
                   <option v-for="item in $root.inventory" :key="item.id" v-bind:value="item">
                     {{item.name}}
@@ -123,6 +124,7 @@ export default {
   name: 'Sales',
   data () {
     return {
+      selected: {},
       newRecord: {
         transactionNumber: 0,
         transactionDate: '',
