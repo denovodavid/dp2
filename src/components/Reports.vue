@@ -5,18 +5,20 @@
         <div class="form-container">
           <h4>Item</h4>
           <label for="item">Select an item:</label>
-          <select
-            name="item"
-            v-model="selectedItem"
-          >
-            <option
-              v-for="item in $root.inventory"
-              :key="item.id"
-              :value="item"
+          <div class="select-container">
+            <select
+              name="item"
+              v-model="selectedItem"
             >
-              {{ item.name }}
-            </option>
-          </select>
+              <option
+                v-for="item in $root.inventory"
+                :key="item.id"
+                :value="item"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+          </div>
           <br><br>
           <p>Average Monthly Sales: {{ averageMonthlyItemSales }}</p>
           <p>Previous Month Sales: {{ lastMonthItemSales }}</p>
@@ -26,18 +28,20 @@
         <div class="form-container">
           <h4>Category</h4>
           <label for="item">Select a category:</label>
-          <select
-            name="item"
-            v-model="selectedCategory"
-          >
-            <option
-              v-for="category in categories"
-              :key="category"
-              :value="category"
+          <div class="select-container">
+            <select
+              name="item"
+              v-model="selectedCategory"
             >
-              {{ category }}
-            </option>
-          </select>
+              <option
+                v-for="category in categories"
+                :key="category"
+                :value="category"
+              >
+                {{ category }}
+              </option>
+            </select>
+          </div>
           <br><br>
           <p>Average Monthly Sales: {{ averageMonthlyCategorySales }}</p>
           <p>Previous Month Sales: {{ lastMonthCategorySales }}</p>
