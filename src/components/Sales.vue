@@ -25,8 +25,12 @@
           <div class="input-block">
             <div class="row">
               <div class="column input-column">
-                <label>Inventory id</label>
-                <input type="text" v-model="newRecord.name"><br>
+                <select v-model="selected">
+                  <option v-for="item in $root.inventory" :key="item.id" v-bind:value="item">
+                    {{item.name}}
+                  </option>
+                </select>
+                <input type="text" v-model="selected.id">
               </div>
             </div>
           </div>
@@ -38,7 +42,7 @@
               </div>
               <div class="column input-column half">
                 <label>Price</label>
-                <input type="number" v-model="newRecord.priceEach"><br>
+                <input type="number" v-model="selected.price"><br>
               </div>
             </div>
           </div>
