@@ -30,11 +30,11 @@
             <div class="row">
               <div class="column input-column half">
                 <label>Price</label>
-                <input type="number" v-model="newItem.price"><br>
+                <input type="number" v-model.number="newItem.price"><br>
               </div>
               <div class="column input-column half">
                 <label>Quantity</label>
-                <input type="number" v-model="newItem.quantity"><br>
+                <input type="number" v-model.number="newItem.quantity"><br>
               </div>
             </div>
           </div>
@@ -80,10 +80,10 @@
                 v-for="item in $root.$data.inventory"
                 :key="item.id"
               >
-                <td><input type="text" v-model="item.name"></td>
-                <td><input type="text" v-model="item.category"></td>
-                <td><input type="number" v-model="item.price"></td>
-                <td><input type="number" v-model="item.quantity"></td>
+                <td><input type="text" v-model.trim="item.name"></td>
+                <td><input type="text" v-model.trim="item.category"></td>
+                <td><input type="number" v-model.number="item.price"></td>
+                <td><input type="number" v-model.number="item.quantity"></td>
                 <td v-show="editInventory">
                   <button @click="$root.removeInventoryItem(item.id)">Remove</button>
                 </td>
