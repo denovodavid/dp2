@@ -4,7 +4,9 @@
       <nav>
         <div class="nav-inner">
           <div class="logo-container">
-            <img src="./assets/img/logo.png" alt="" class="logo">
+            <router-link to="/">
+              <img src="./assets/img/logo.png" alt="" class="logo">
+            </router-link>
           </div>
           <ul class="nav-menu">
             <li>
