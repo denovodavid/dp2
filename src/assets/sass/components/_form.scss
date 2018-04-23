@@ -1,5 +1,6 @@
 input[type="text"],
-input[type="number"]
+input[type="number"],
+select
 {
 	width: 100%;
 	border: 2px solid $grey-a;
@@ -14,6 +15,52 @@ input[type="number"]
 		outline: none;
 		box-shadown: none;
 		border-color: $green;
+	}
+
+	@media(max-width: $breakpoint-small)
+	{
+		width: auto;
+	}
+}
+
+.select-container
+{
+	position: relative;
+	color: transparent;
+
+	select
+	{
+		color: transparent;
+
+		option
+		{
+			color: $black;
+		}
+	}
+
+	&::after
+	{
+		content: "";
+		display: block;
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		top: 6px;
+		right: 15px;
+		z-index: 5;
+		border-right: 2px solid $grey-a;
+		border-bottom: 2px solid $grey-a;
+		transform: rotate(45deg);
+		transition: transform 0.2s linear;
+	}
+
+	&.is-open
+	{
+		&::after
+		{
+			top: 14px;
+			transform: rotate(225deg);
+		}
 	}
 }
 
