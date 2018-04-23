@@ -1,4 +1,3 @@
-import uuidv4 from 'uuid/v4'
 
 export default {
   data: {
@@ -30,14 +29,14 @@ export default {
       record.priceEach > 0 &&
       record.total > 0
       ) {
-        record.id = uuidv4()
+        record.transactionNumber = Object.keys(this.sales).length + 1
         this.sales.push(record)
-        return record.id
+        return record.transactionNumber
       }
       return null
     },
-    removeSalesRecord (id) {
-      const record = this.sales.find(record => record.id === id)
+    removeSalesRecord (transactionNumber) {
+      const record = this.sales.find(record => record.transactionNumber === transactionNumber)
       if (record == null) return
       const index = this.sales.indexOf(record)
       this.sales.splice(index, 1)

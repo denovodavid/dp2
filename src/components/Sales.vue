@@ -12,10 +12,6 @@
         <div class="form-container">
           <div class="input-block">
             <div class="row">
-              <div class="column input-column half">
-                <label>Transaction Number</label>
-                <input type="number" v-model.trim="newRecord.transactionNumber">
-              </div>
               <div class="column input-column half" style="position: relative">
                 <label>Transaction Date</label>
                 <date-picker v-model.trim="newRecord.transactionDate" :config="date_config"></date-picker>
@@ -87,9 +83,9 @@
             <tbody v-show="!editSales">
               <tr
                 v-for="record in $root.$data.sales"
-                :key="record.id"
+                :key="record.transactionNumber"
               >
-                <td>{{ record.transactionNumber }}</td>             <!--TODO: auto generate-->
+                <td>{{ record.transactionNumber }}</td>
                 <td>{{ record.transactionDate }}</td>
                 <td>{{ record.id }}</td>
                 <td>{{ record.quantity }}</td>
@@ -100,16 +96,15 @@
             <tbody v-show="editSales">
               <tr
                 v-for="record in $root.$data.sales"
-                :key="record.id"
+                :key="record.transactionNumber"
               >
-                <td><input type="number" v-model="record.transactionNumber"></td>
                 <td><input type="text" v-model="record.transactionDate"></td>
                 <td><input type="text" v-model="record.id"></td>
                 <td><input type="number" v-model="record.quantity"></td>
                 <td><input type="number" v-model="record.priceEach"></td>
                 <td><input type="number" v-model="record.total"></td>
                 <td v-show="editSales">
-                  <button @click="$root.removeSalesRecord(record.id)">Remove</button>
+                  <button @click="$root.removeSalesRecord(record.transactionNumber)">Remove</button>
                 </td>
               </tr>
             </tbody>
@@ -136,7 +131,6 @@ export default {
       },
       selected: {},
       newRecord: {
-        transactionNumber: 0,
         transactionDate: '',
         id: '',
         quantity: 1,
@@ -149,7 +143,6 @@ export default {
   methods: {
     addSalesRecord () {
       const record = {
-        transactionNumber: this.newRecord.transactionNumber,
         transactionDate: this.newRecord.transactionDate,
         id: this.selected.id,
         quantity: this.newRecord.quantity,
@@ -158,9 +151,8 @@ export default {
 
       }
       this.$root.addSalesRecord(record)
-      this.newRecord.transactionNumber = 0
       this.newRecord.transactionDate = ''
-      this.newRecord.id = ''
+      this.newRecord.id = this.selected.id
       this.newRecord.quantity = 1
       this.newRecord.priceEach = 0
       this.newRecord.total = this.newRecord.quantity * this.selected.price
