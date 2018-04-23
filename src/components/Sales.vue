@@ -51,7 +51,8 @@
             <div class="row">
               <div class="column input-column">
                 <label>Total</label>
-                <input type="number" v-model="newRecord.total"><br>
+                <label>{{selected.price * newRecord.quantity}}</label>
+                <input type="hidden" v-model="newRecord.total"><br>
               </div>
             </div>
           </div>
@@ -89,9 +90,9 @@
                 :key="record.id"
               >
                 <td>{{ record.transactionNumber }}</td>             <!--TODO: auto generate-->
-                <td>{{ record.transactionDate }}</td>               <!--TODO: date picker-->
-                <td>{{ record.id }}</td>                            <!--TODO: intergrate with inventory id-->
-                <td>{{ record.quantity }}</td>                      <!--TODO: change inventory items quantity-->
+                <td>{{ record.transactionDate }}</td>
+                <td>{{ record.id }}</td>
+                <td>{{ record.quantity }}</td>
                 <td>{{ record.priceEach}}</td>
                 <td>{{ record.total }}</td>
               </tr>
@@ -150,10 +151,10 @@ export default {
       const record = {
         transactionNumber: this.newRecord.transactionNumber,
         transactionDate: this.newRecord.transactionDate,
-        id: this.newRecord.id,
+        id: this.selected.id,
         quantity: this.newRecord.quantity,
-        priceEach: this.newRecord.priceEach,
-        total: this.newRecord.total
+        priceEach: this.selected.price,
+        total: this.newRecord.quantity * this.selected.price
 
       }
       this.$root.addSalesRecord(record)
@@ -162,7 +163,7 @@ export default {
       this.newRecord.id = ''
       this.newRecord.quantity = 1
       this.newRecord.priceEach = 0
-      this.newRecord.total = 0
+      this.newRecord.total = this.newRecord.quantity * this.selected.price
     }
   }
 }
