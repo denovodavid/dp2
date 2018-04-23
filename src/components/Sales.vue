@@ -16,9 +16,9 @@
                 <label>Transaction Number</label>
                 <input type="number" v-model.trim="newRecord.transactionNumber">
               </div>
-              <div class="column input-column half">
+              <div class="column input-column half" style="position: relative">
                 <label>Transaction Date</label>
-                <input type="text" v-model.trim="newRecord.transDate"><br>
+                <date-picker v-model.trim="newRecord.transactionDate" :config="date_config"></date-picker>
               </div>
             </div>
           </div>
@@ -120,10 +120,19 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import datePicker from 'vue-bootstrap-datetimepicker'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
+Vue.use(datePicker)
+
 export default {
   name: 'Sales',
   data () {
     return {
+      date_config: {
+        format: 'YYYY-MM-DD'
+      },
       selected: {},
       newRecord: {
         transactionNumber: 0,
@@ -141,14 +150,14 @@ export default {
       const record = {
         transactionNumber: this.newRecord.transactionNumber,
         transactionDate: this.newRecord.transactionDate,
-        price: this.newRecord.id,
+        id: this.newRecord.id,
         quantity: this.newRecord.quantity,
         priceEach: this.newRecord.priceEach,
         total: this.newRecord.total
 
       }
       this.$root.addSalesRecord(record)
-      this.newRecord.transationNumber = 0
+      this.newRecord.transactionNumber = 0
       this.newRecord.transactionDate = ''
       this.newRecord.id = ''
       this.newRecord.quantity = 1
