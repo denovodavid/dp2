@@ -30,7 +30,7 @@ select
 
 	select
 	{
-		color: transparent;
+		// color: transparent;
 
 		option
 		{
@@ -46,10 +46,11 @@ select
 		height: 16px;
 		position: absolute;
 		top: 6px;
-		right: 15px;
+		right: 8px;
 		z-index: 5;
 		border-right: 2px solid $grey-a;
 		border-bottom: 2px solid $grey-a;
+		background: $white;
 		transform: rotate(45deg);
 		transition: transform 0.2s linear;
 	}
