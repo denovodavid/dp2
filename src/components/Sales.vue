@@ -90,7 +90,7 @@
                 <td>{{ record.id }}</td>
                 <td>{{ record.quantity }}</td>
                 <td>{{ record.priceEach}}</td>
-                <td>{{ record.total }}</td>
+                <td>{{ record.quantity * record.priceEach }}</td>
               </tr>
             </tbody>
             <tbody v-show="editSales">
@@ -98,11 +98,15 @@
                 v-for="record in $root.$data.sales"
                 :key="record.transactionNumber"
               >
+                <td><input type="number" v-model="record.transactionNumber"></td>
                 <td><input type="text" v-model="record.transactionDate"></td>
                 <td><input type="text" v-model="record.id"></td>
                 <td><input type="number" v-model="record.quantity"></td>
                 <td><input type="number" v-model="record.priceEach"></td>
-                <td><input type="number" v-model="record.total"></td>
+                <td>
+                  <label>{{record.quantity * record.priceEach}}</label>
+                  <input type="hidden" v-model="record.total">
+                </td>
                 <td v-show="editSales">
                   <button @click="$root.removeSalesRecord(record.transactionNumber)">Remove</button>
                 </td>
