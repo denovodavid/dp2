@@ -47,7 +47,9 @@
             <div class="row">
               <div class="column input-column">
                 <label>Total</label>
-                <label>{{selected.price * newRecord.quantity}}</label>
+                <span v-if="selected.price != null">
+                  <label>{{selected.price * newRecord.quantity}}</label>
+                </span>
                 <input type="hidden" v-model="newRecord.total"><br>
               </div>
             </div>
