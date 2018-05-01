@@ -47,7 +47,7 @@
               <div class="column input-column">
                 <label>Total</label>
                 <span v-if="newRecord.priceEach != null">
-                  <label>{{ newRecord.priceEach * newRecord.quantity }}</label>
+                  <label>{{ total(newRecord) | money }}</label>
                 </span>
               </div>
             </div>
@@ -89,8 +89,8 @@
                 <td>{{ record.transactionDate }}</td>
                 <td>{{ $root.inventory.find(item => item.id == record.id).name }}</td>
                 <td>{{ record.quantity }}</td>
-                <td>{{ record.priceEach}}</td>
-                <td>{{ record.quantity * record.priceEach }}</td>
+                <td>{{ record.priceEach | money }}</td>
+                <td>{{ total(record) | money }}</td>
               </tr>
             </tbody>
             <tbody v-show="editSales">
@@ -98,7 +98,7 @@
                 v-for="record in $root.$data.sales"
                 :key="record.transactionNumber"
               >
-                <td><input type="number" v-model="record.transactionNumber"></td>
+                <td><label>{{ record.transactionNumber }}</label></td>
                 <td>
                   <div style="position: relative">
                     <date-picker v-model.trim="record.transactionDate" :config="date_config"></date-picker>
@@ -111,10 +111,10 @@
                   </option>
                 </select>
                 </td>
-                <td><input type="number" v-model="record.quantity"></td>
-                <td><input type="number" v-model="record.priceEach"></td>
+                <td><input type="number" v-model.number="record.quantity"></td>
+                <td><input type="number" v-model.number="record.priceEach"></td>
                 <td>
-                  <label>{{record.quantity * record.priceEach}}</label>
+                  <label>{{ total(record) | money }}</label>
                 </td>
                 <td v-show="editSales">
                   <button @click="$root.removeSalesRecord(record.transactionNumber)">Remove</button>
@@ -163,6 +163,9 @@ export default {
       this.newRecord.transactionDate = ''
       this.newRecord.quantity = 1
       this.newRecord.priceEach = this.selected.price
+    },
+    total (item) {
+      return item.quantity * item.priceEach
     }
   }
 }
