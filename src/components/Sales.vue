@@ -22,12 +22,11 @@
             <div class="row">
               <div class="column input-column">
                 <label>Please Select the Inventory Item: </label>
-                <select v-model="selected">
+                <select v-model="selected" @change="selectItem">
                   <option v-for="item in $root.inventory" :key="item.id" v-bind:value="item">
                     {{item.name}}
                   </option>
                 </select>
-                <input type="text" v-model="selected.id">
               </div>
             </div>
           </div>
@@ -35,11 +34,11 @@
             <div class="row">
               <div class="column input-column half">
                 <label>Quantity</label>
-                <input type="number" v-model="newRecord.quantity"><br>
+                <input type="number" v-model.number="newRecord.quantity"><br>
               </div>
               <div class="column input-column half">
                 <label>Price</label>
-                <input type="number" v-model="selected.price"><br>
+                <input type="number" v-model.number="newRecord.priceEach"><br>
               </div>
             </div>
           </div>
@@ -47,10 +46,9 @@
             <div class="row">
               <div class="column input-column">
                 <label>Total</label>
-                <span v-if="selected.price != null">
-                  <label>{{selected.price * newRecord.quantity}}</label>
+                <span v-if="newRecord.priceEach != null">
+                  <label>{{ newRecord.priceEach * newRecord.quantity }}</label>
                 </span>
-                <input type="hidden" v-model="newRecord.total"><br>
               </div>
             </div>
           </div>
@@ -75,7 +73,7 @@
               <tr>
                 <th>Transaction Number</th>
                 <th>Transaction Date</th>
-                <th>Inventory id</th>
+                <th>Inventory Item</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Total</th>
@@ -89,7 +87,7 @@
               >
                 <td>{{ record.transactionNumber }}</td>
                 <td>{{ record.transactionDate }}</td>
-                <td>{{ record.id }}</td>
+                <td>{{ $root.inventory.find(item => item.id == record.id).name }}</td>
                 <td>{{ record.quantity }}</td>
                 <td>{{ record.priceEach}}</td>
                 <td>{{ record.quantity * record.priceEach }}</td>
@@ -101,13 +99,22 @@
                 :key="record.transactionNumber"
               >
                 <td><input type="number" v-model="record.transactionNumber"></td>
-                <td><input type="text" v-model="record.transactionDate"></td>
-                <td><input type="text" v-model="record.id"></td>
+                <td>
+                  <div style="position: relative">
+                    <date-picker v-model.trim="record.transactionDate" :config="date_config"></date-picker>
+                  </div>
+                </td>
+                <td>
+                  <select v-model="record.id">
+                  <option v-for="item in $root.inventory" :key="item.id" v-bind:value="item.id">
+                    {{item.name}}
+                  </option>
+                </select>
+                </td>
                 <td><input type="number" v-model="record.quantity"></td>
                 <td><input type="number" v-model="record.priceEach"></td>
                 <td>
                   <label>{{record.quantity * record.priceEach}}</label>
-                  <input type="hidden" v-model="record.total">
                 </td>
                 <td v-show="editSales">
                   <button @click="$root.removeSalesRecord(record.transactionNumber)">Remove</button>
@@ -124,6 +131,7 @@
 <script>
 import Vue from 'vue'
 import datePicker from 'vue-bootstrap-datetimepicker'
+import clone from 'lodash/clone'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
 Vue.use(datePicker)
@@ -140,28 +148,21 @@ export default {
         transactionDate: '',
         id: '',
         quantity: 1,
-        priceEach: 0,
-        total: 0
+        priceEach: 0
       },
       editSales: false
     }
   },
   methods: {
-    addSalesRecord () {
-      const record = {
-        transactionDate: this.newRecord.transactionDate,
-        id: this.selected.id,
-        quantity: this.newRecord.quantity,
-        priceEach: this.selected.price,
-        total: this.newRecord.quantity * this.selected.price
-
-      }
-      this.$root.addSalesRecord(record)
-      this.newRecord.transactionDate = ''
+    selectItem () {
       this.newRecord.id = this.selected.id
+      this.newRecord.priceEach = this.selected.price
+    },
+    addSalesRecord () {
+      this.$root.addSalesRecord(clone(this.newRecord))
+      this.newRecord.transactionDate = ''
       this.newRecord.quantity = 1
       this.newRecord.priceEach = 0
-      this.newRecord.total = this.newRecord.quantity * this.selected.price
     }
   }
 }
