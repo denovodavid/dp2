@@ -97,6 +97,8 @@
 </template>
 
 <script>
+import clone from 'lodash/clone'
+
 export default {
   name: 'Inventory',
   data () {
@@ -112,13 +114,7 @@ export default {
   },
   methods: {
     addInventoryItem () {
-      const item = {
-        name: this.newItem.name,
-        category: this.newItem.category,
-        price: this.newItem.price,
-        quantity: this.newItem.quantity
-      }
-      this.$root.addInventoryItem(item)
+      this.$root.addInventoryItem(clone(this.newItem))
       this.newItem.name = ''
       this.newItem.category = ''
       this.newItem.price = 0
