@@ -20,9 +20,9 @@
             </select>
           </div>
           <br><br>
-          <p>Average Monthly Sales: {{ averageMonthlyItemSales }}</p>
-          <p>Previous Month Sales: {{ lastMonthItemSales }}</p>
-          <h2>Predicted Monthly Sales: {{ predictedMonthlyItemSales }}</h2>
+          <p>Average Monthly Sales: {{ averageMonthlyItemSales | money }}</p>
+          <p>Previous Month Sales: {{ lastMonthItemSales | money }}</p>
+          <h2>Predicted Monthly Sales: {{ predictedMonthlyItemSales | money }}</h2>
         </div>
         <hr>
         <div class="form-container">
@@ -43,9 +43,9 @@
             </select>
           </div>
           <br><br>
-          <p>Average Monthly Sales: {{ averageMonthlyCategorySales }}</p>
-          <p>Previous Month Sales: {{ lastMonthCategorySales }}</p>
-          <h2>Predicted Monthly Sales: {{ predictedMonthlyCategorySales }}</h2>
+          <p>Average Monthly Sales: {{ averageMonthlyCategorySales | money }}</p>
+          <p>Previous Month Sales: {{ lastMonthCategorySales | money }}</p>
+          <h2>Predicted Monthly Sales: {{ predictedMonthlyCategorySales | money }}</h2>
         </div>
       </div>
     </div>
@@ -53,6 +53,9 @@
 </template>
 
 <script>
+import groupBy from 'lodash/groupBy'
+import sumBy from 'lodash/sumBy'
+
 export default {
   name: 'reports',
   data () {
@@ -66,28 +69,56 @@ export default {
       // get all categories
       return [...new Set(this.$root.inventory.map(item => item.category))]
     },
+    itemSales () {
+      // TODO: from the past 12 months ONLY
+      return this.$root.sales.filter(sale => sale.id === this.selectedItem.id)
+    },
+    monthlyItemSales () {
+      return groupBy(this.itemSales, sale => sale.transactionDate.slice(0, 7))
+    },
     averageMonthlyItemSales () {
       // get all sales of item by month
-      // average them
-      return 20
+      // average their totals them
+      const total = Object.values(this.monthlyItemSales)
+        .reduce((total, sales) => {
+          total += sumBy(sales, sale => sale.quantity * sale.priceEach)
+          return total
+        }, 0)
+      return total / 12
     },
     lastMonthItemSales () {
       // get all sales of item from last month
-      return 30
+      const lastMonthSales = this.monthlyItemSales[new Date().toISOString().slice(0, 7)]
+      return sumBy(lastMonthSales, sale => sale.quantity * sale.priceEach)
     },
     predictedMonthlyItemSales () {
       // Regression towards the mean
       return this.lastMonthItemSales +
         (this.averageMonthlyItemSales - this.lastMonthItemSales) / 2
     },
+    categorySales () {
+      return this.$root.sales.filter(sale => {
+        const item = this.$root.inventory.find(item => item.id === sale.id)
+        return item.category === this.selectedCategory
+      })
+    },
+    monthlyCategorySales () {
+      return groupBy(this.categorySales, sale => sale.transactionDate.slice(0, 7))
+    },
     averageMonthlyCategorySales () {
       // get all sales of category by month
       // average them
-      return 50
+      const total = Object.values(this.monthlyCategorySales)
+        .reduce((total, sales) => {
+          total += sumBy(sales, sale => sale.quantity * sale.priceEach)
+          return total
+        }, 0)
+      return total / 12
     },
     lastMonthCategorySales () {
       // get all sales of a category from last month
-      return 37
+      const lastMonthSales = this.monthlyCategorySales[new Date().toISOString().slice(0, 7)]
+      return sumBy(lastMonthSales, sale => sale.quantity * sale.priceEach)
     },
     predictedMonthlyCategorySales () {
       // Regression towards the mean
