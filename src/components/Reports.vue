@@ -55,6 +55,11 @@
 <script>
 import groupBy from 'lodash/groupBy'
 import sumBy from 'lodash/sumBy'
+import df from 'date-fns'
+
+// Date ranges from previous month minus 12 months
+const endDate = df.lastDayOfMonth(df.subMonths(new Date(), 1))
+const startDate = df.subMonths(df.startOfMonth(new Date()), 12)
 
 export default {
   name: 'reports',
@@ -70,8 +75,12 @@ export default {
       return [...new Set(this.$root.inventory.map(item => item.category))]
     },
     itemSales () {
-      // TODO: from the past 12 months ONLY
-      return this.$root.sales.filter(sale => sale.id === this.selectedItem.id)
+      return this.$root.sales.filter(sale => {
+        const saleDate = new Date(sale.transactionDate)
+        return sale.id === this.selectedItem.id &&
+          df.isAfter(saleDate, startDate) &&
+          df.isBefore(saleDate, endDate)
+      })
     },
     monthlyItemSales () {
       return groupBy(this.itemSales, sale => sale.transactionDate.slice(0, 7))
@@ -88,7 +97,7 @@ export default {
     },
     lastMonthItemSales () {
       // get all sales of item from last month
-      const lastMonthSales = this.monthlyItemSales[new Date().toISOString().slice(0, 7)]
+      const lastMonthSales = this.monthlyItemSales[endDate.toISOString().slice(0, 7)]
       return sumBy(lastMonthSales, sale => sale.quantity * sale.priceEach)
     },
     predictedMonthlyItemSales () {
@@ -99,7 +108,10 @@ export default {
     categorySales () {
       return this.$root.sales.filter(sale => {
         const item = this.$root.inventory.find(item => item.id === sale.id)
-        return item.category === this.selectedCategory
+        const saleDate = new Date(sale.transactionDate)
+        return item.category === this.selectedCategory &&
+          df.isAfter(saleDate, startDate) &&
+          df.isBefore(saleDate, endDate)
       })
     },
     monthlyCategorySales () {
@@ -117,7 +129,7 @@ export default {
     },
     lastMonthCategorySales () {
       // get all sales of a category from last month
-      const lastMonthSales = this.monthlyCategorySales[new Date().toISOString().slice(0, 7)]
+      const lastMonthSales = this.monthlyCategorySales[endDate.toISOString().slice(0, 7)]
       return sumBy(lastMonthSales, sale => sale.quantity * sale.priceEach)
     },
     predictedMonthlyCategorySales () {
