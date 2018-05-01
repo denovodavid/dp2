@@ -13,6 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "date-fns": "^1.29.0",
     "jshint": "^2.9.5",
     "lodash": "^4.17.5",
     "uuid": "^3.2.1",
