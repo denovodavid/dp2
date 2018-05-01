@@ -162,7 +162,7 @@ export default {
       this.$root.addSalesRecord(clone(this.newRecord))
       this.newRecord.transactionDate = ''
       this.newRecord.quantity = 1
-      this.newRecord.priceEach = 0
+      this.newRecord.priceEach = this.selected.price
     }
   }
 }
