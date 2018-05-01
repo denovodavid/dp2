@@ -9,6 +9,11 @@ import sales from './sales'
 
 Vue.config.productionTip = false
 
+Vue.filter('money', (number) => {
+  if (isNaN(Number(number))) number = 0
+  return '$' + number.toFixed(2).toLocaleString('en-AU')
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
