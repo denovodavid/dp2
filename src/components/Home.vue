@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <banner text="Home">
+    <!-- <banner text="Home">
       <p :style="{
         textAlign: 'center',
         maxWidth: '30rem'
@@ -9,7 +9,25 @@
         the community with quality service and the widest range of products at the lowest
         prices.
       </p>
-    </banner>
+    </banner> -->
+    <div class="banner">
+      <div class="inner">
+        <div class="row">
+          <div class="column">
+            <div class="banner-title">
+              <span>Home</span>
+            </div>
+            <div class="subtext">
+              <p>
+                The People's Health Pharmacy is a locally-owned pharmacy that strives to provide
+                the community with quality service and the widest range of products at the lowest
+                prices.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="b-container">
       <div class="b-row">
         <div class="b-col">

@@ -79,6 +79,13 @@ header
 			.hamburger-container
 			{
 				right: 0px;
+				transform: scaleX(-1);
+				transition: transform 0.2s ease-in-out;
+
+				&.active
+				{
+					transform: none;
+				}
 
 				@media(min-width: $breakpoint-large)
 				{
