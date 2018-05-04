@@ -28,92 +28,51 @@
         </div>
       </div>
     </div>
-    <div class="b-container">
-      <div class="b-row">
-        <div class="b-col">
-          <p>Remember to be kind to customers and handle sales with care!</p>
-          <h2>Vue.js Essential Links</h2>
+    <div class="text-header">
+      <p class="lead-text">Remember to be kind to customers and handle sales with care!</p>
+      <p>
+        Lorem ipsum dolor sit amet, ex vel semper salutatus. An nam dico percipit. Ad sed tantas phaedrum, mediocrem moderatius reprimique in nec. Iisque omnesque ius te. Duo salutandi moderatius suscipiantur ut, sale eirmod tractatos ex nam, in timeam meliore recusabo quo.
+      </p>
+      <p>
+        Sit eu soleat euripidis voluptaria, qui facilisi invenire cu. Veri scribentur ne est. Sed cu quem repudiare sententiae, est veri impetus tractatos et. Ex has ocurreret definitiones.
+      </p>
+    </div>
+    <div class="blog-items">
+      <h2 class="blogs-heading">Recent News</h2>
+      <div class="blog-item">
+        <div class="blog-title">
+          <span>Blog Title</span>
+        </div>
+        <div class="blog-image"></div>
+        <div class="blog-desc">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adepiscing something something I forget the rest
+          </p>
+        </div>
+      </div>
+      <div class="blog-item">
+        <div class="blog-title">
+          <span>Blog Title</span>
+        </div>
+        <div class="blog-image"></div>
+        <div class="blog-desc">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adepiscing something something I forget the rest
+          </p>
+        </div>
+      </div>
+      <div class="blog-item">
+        <div class="blog-title">
+          <span>Blog Title</span>
+        </div>
+        <div class="blog-image"></div>
+        <div class="blog-desc">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adepiscing something something I forget the rest
+          </p>
         </div>
       </div>
     </div>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
   </div>
 </template>
 

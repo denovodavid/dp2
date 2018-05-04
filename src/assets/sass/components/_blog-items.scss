@@ -1,0 +1,48 @@
+.blog-items
+{
+	text-align: center;
+	padding: 50px 0px;
+
+	.blogs-heading
+	{
+		margin-bottom: 50px;
+	}
+
+	.blog-item
+	{
+		display: inline-block;
+		position: relative;
+		max-width: 400px;
+		margin: 0px 10px;
+		text-align: left;
+
+		&:hover
+		{
+			.blog-image
+			{
+				background: #ccc;
+			}
+		}
+
+		.blog-title
+		{
+			margin-bottom: 12px;
+			font-size: 24px;
+			line-height: 24px;
+		}
+
+		.blog-image
+		{
+			width: 100%;
+			height: 180px;
+			margin-bottom: 12px;
+			background: #eee;
+			transiton: background 0.2s ease-in-out;
+		}
+
+		.blog-desc
+		{
+			color: $dark-green;
+		}
+	}
+}
