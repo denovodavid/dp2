@@ -19,10 +19,14 @@
               </option>
             </select>
           </div>
-          <br><br>
+          <br>
           <p>Average Monthly Sales: {{ averageMonthlyItemSales | money }}</p>
           <p>Previous Month Sales: {{ lastMonthItemSales | money }}</p>
           <h2>Predicted Monthly Sales: {{ predictedMonthlyItemSales | money }}</h2>
+          <line-chart
+            :chart-data="monthlySalesChartData"
+            :options="monthlySalesChartOptions"
+          />
         </div>
         <hr>
         <div class="form-container">
@@ -42,7 +46,7 @@
               </option>
             </select>
           </div>
-          <br><br>
+          <br>
           <p>Average Monthly Sales: {{ averageMonthlyCategorySales | money }}</p>
           <p>Previous Month Sales: {{ lastMonthCategorySales | money }}</p>
           <h2>Predicted Monthly Sales: {{ predictedMonthlyCategorySales | money }}</h2>
@@ -56,6 +60,7 @@
 import groupBy from 'lodash/groupBy'
 import sumBy from 'lodash/sumBy'
 import df from 'date-fns'
+import LineChart from '@/components/LineChart'
 
 // Date ranges from previous month minus 12 months
 const endDate = df.lastDayOfMonth(df.subMonths(new Date(), 1))
@@ -63,6 +68,9 @@ const startDate = df.subMonths(df.startOfMonth(new Date()), 12)
 
 export default {
   name: 'reports',
+  components: {
+    LineChart
+  },
   data () {
     return {
       selectedItem: {},
@@ -136,6 +144,40 @@ export default {
       // Regression towards the mean
       return this.lastMonthCategorySales +
         (this.averageMonthlyCategorySales - this.lastMonthCategorySales) / 2
+    },
+    monthlySalesChartData () {
+      const months = []
+      for (let i = 0; i < 12; i++) {
+        months[11 - i] = df.subMonths(endDate, i).toISOString().slice(0, 7)
+      }
+      return {
+        labels: months,
+        datasets: [{
+          label: this.selectedItem.name,
+          data: Object.entries(this.monthlyItemSales)
+            .map(([month, sales]) => {
+              return {
+                x: new Date(month),
+                y: sumBy(sales, sale => sale.quantity * sale.priceEach)
+              }
+            })
+            .sort((a, b) => {
+              return df.isBefore(a.x, b.x)
+            })
+        }]
+      }
+    },
+    monthlySalesChartOptions () {
+      return {
+        scales: {
+          xAxes: [{
+            type: 'time',
+            time: {
+              unit: 'month'
+            }
+          }]
+        }
+      }
     }
   },
   created () {
