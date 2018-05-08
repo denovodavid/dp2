@@ -137,6 +137,10 @@ export default {
       return this.lastMonthCategorySales +
         (this.averageMonthlyCategorySales - this.lastMonthCategorySales) / 2
     }
+  },
+  created () {
+    this.selectedItem = this.$root.inventory[0]
+    this.selectedCategory = this.categories[0]
   }
 }
 </script>
