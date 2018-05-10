@@ -51,16 +51,68 @@
           <p>Previous Month Sales: {{ lastMonthCategorySales | money }}</p>
           <h2>Predicted Monthly Sales: {{ predictedMonthlyCategorySales | money }}</h2>
         </div>
+        <hr>
+        <div class="form-container">
+          <h4>Monthly Sales</h4>
+          <label for="item">Select An Item:</label>
+          <div class="select-container">
+            <select name="item" v-model="selectedItem">
+              <option v-for="item in $root.inventory" :key="item.id" :value="item">
+                {{item.name}}
+              </option>
+            </select>
+          </div>
+          <div>
+            <Label>Please select start date:</Label>
+            <div style="position: relative">
+              <date-picker v-model="monthStartDate" :config="date_config"></date-picker>
+            </div>
+          </div>
+          <div>
+            <Label>Please select end date:</Label>
+            <div style="position: relative">
+              <date-picker v-model="monthEndDate" :config="date_config"></date-picker>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="table-container">
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Sales</th>
+              </tr>
+            </thead>
+            <body>
+              <tr>
+                <td>{{selectedItem.name}}</td>
+                <td>{{selectedItem.category}}</td>
+                <td>{{totalQuantity}}</td>
+                <td>{{selectedItem.price}}</td>
+                <td>{{totalMonthlySales}}</td>
+              </tr>
+            </body>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import groupBy from 'lodash/groupBy'
 import sumBy from 'lodash/sumBy'
 import df from 'date-fns'
 import LineChart from '@/components/LineChart'
+import datePicker from 'vue-bootstrap-datetimepicker'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
+Vue.use(datePicker)
 
 // Date ranges from previous month minus 12 months
 const endDate = df.lastDayOfMonth(df.subMonths(new Date(), 1))
@@ -73,8 +125,13 @@ export default {
   },
   data () {
     return {
+      date_config: {
+        format: 'YYYY-MM-DD'
+      },
       selectedItem: {},
-      selectedCategory: ''
+      selectedCategory: '',
+      monthStartDate: '',
+      monthEndDate: ''
     }
   },
   computed: {
@@ -178,6 +235,21 @@ export default {
           }]
         }
       }
+    },
+    getSales () {
+      return this.$root.sales.filter(sale => {
+        const item = this.$root.inventory.find(item => item.id === sale.id)
+        const saleDate = new Date(sale.transactionDate)
+        return item.category === this.selectedCategory &&
+          df.isAfter(saleDate, this.monthStartDate) &&
+          df.isBefore(saleDate, this.monthEndDate)
+      })
+    },
+    totalQuantity () {
+      return sumBy(this.getSales, sale => sale.quantity)
+    },
+    totalMonthlySales () {
+      return sumBy(this.getSales, sale => sale.quantity * sale.priceEach)
     }
   },
   created () {
