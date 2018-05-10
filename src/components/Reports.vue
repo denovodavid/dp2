@@ -53,7 +53,7 @@
         </div>
         <hr>
         <div class="form-container">
-          <h4>Total Sales by Date</h4>
+          <h4>Total Item Sales by Date</h4>
           <label for="item">Select An Item:</label>
           <div class="select-container">
             <select name="item" v-model="selectedItem">
@@ -76,7 +76,7 @@
           </div>
         </div>
         <hr>
-        <h4>Total Sales</h4>
+        <h4>Total Item Sales</h4>
         <div class="table-container">
           <table border="1">
             <thead>

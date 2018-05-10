@@ -12,7 +12,7 @@
         <div class="form-container">
           <div class="input-block">
             <div class="row">
-              <div class="column input-column half" style="position: relative">
+              <div class="column input-column" style="position: relative">
                 <label>Transaction Date</label>
                 <date-picker v-model.trim="newRecord.transactionDate" :config="date_config"></date-picker>
               </div>
