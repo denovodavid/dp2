@@ -76,6 +76,7 @@
           </div>
         </div>
         <hr>
+        <h4>Total Sales</h4>
         <div class="table-container">
           <table border="1">
             <thead>
@@ -94,6 +95,32 @@
                 <td>{{totalQuantity}}</td>
                 <td>{{selectedItem.price | money}}</td>
                 <td>{{totalSales | money}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <hr>
+        <h4>Transactions in period</h4>
+        <div class="table-container">
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Transaction Number</th>
+                <th>Transaction Date</th>
+                <th>Inventory Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="sale in getSales" :key="sale.transactionNumber">
+                <td>{{sale.transactionNumber}}</td>
+                <td>{{sale.transactionDate}}</td>
+                <td>{{selectedItem.name}}</td>
+                <td>{{sale.quantity}}</td>
+                <td>{{sale.priceEach | money}}</td>
+                <td>{{sale.quantity * sale.priceEach | money}}</td>
               </tr>
             </tbody>
           </table>
