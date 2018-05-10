@@ -53,7 +53,7 @@
         </div>
         <hr>
         <div class="form-container">
-          <h4>Monthly Sales</h4>
+          <h4>Total Sales by Date</h4>
           <label for="item">Select An Item:</label>
           <div class="select-container">
             <select name="item" v-model="selectedItem">
@@ -87,15 +87,15 @@
                 <th>Total Sales</th>
               </tr>
             </thead>
-            <body>
+            <tbody>
               <tr>
                 <td>{{selectedItem.name}}</td>
                 <td>{{selectedItem.category}}</td>
                 <td>{{totalQuantity}}</td>
-                <td>{{selectedItem.price}}</td>
-                <td>{{totalMonthlySales}}</td>
+                <td>{{selectedItem.price | money}}</td>
+                <td>{{totalSales | money}}</td>
               </tr>
-            </body>
+            </tbody>
           </table>
         </div>
       </div>
@@ -240,7 +240,7 @@ export default {
       return this.$root.sales.filter(sale => {
         const item = this.$root.inventory.find(item => item.id === sale.id)
         const saleDate = new Date(sale.transactionDate)
-        return item.category === this.selectedCategory &&
+        return item.id === this.selectedItem.id &&
           df.isAfter(saleDate, this.monthStartDate) &&
           df.isBefore(saleDate, this.monthEndDate)
       })
@@ -248,7 +248,7 @@ export default {
     totalQuantity () {
       return sumBy(this.getSales, sale => sale.quantity)
     },
-    totalMonthlySales () {
+    totalSales () {
       return sumBy(this.getSales, sale => sale.quantity * sale.priceEach)
     }
   },
