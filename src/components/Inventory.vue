@@ -43,17 +43,17 @@
               <div class="row">
                 <div class="column">
                   <button id="inventory-add-button" @click="addInventoryItem">Add To Inventory</button>
-                  <button id="inventory-edit-button"
-                    @click="editInventory = !editInventory"
-                  >
-                    {{ editInventory ? 'Done' : 'Edit' }}
-                  </button>
+                  <button id="inventory-view-button" @click="viewInventory = !viewInventory">View Inventory</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="table-container">
+        <div class="table-container" v-show="viewInventory">
+          <button id="inventory-edit-button" @click="editInventory = !editInventory"
+          >
+            {{ editInventory ? 'Done' : 'Edit' }}
+          </button>
           <table border="1">
             <thead>
               <tr>
@@ -109,7 +109,8 @@ export default {
         price: 0,
         quantity: 1
       },
-      editInventory: false
+      editInventory: false,
+      viewInventory: false
     }
   },
   methods: {
