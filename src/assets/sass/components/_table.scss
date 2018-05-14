@@ -7,8 +7,9 @@ table
   border-collapse: separate;
   border-spacing: 0;
 
-	thead,
-	tbody
+  thead,
+  tbody,
+  tfoot
 	{
 		border: none;
 
@@ -53,5 +54,17 @@ table
 				}
 			}
 		}
-	}
+  }
+
+  tfoot
+  {
+    tr
+    {
+      th
+      {
+        border-top: 1px solid $grey-a;
+      }
+    }
+  }
+
 }
