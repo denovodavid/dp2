@@ -1,0 +1,97 @@
+header
+{
+	position: relative;
+	height: $header-height;
+
+	nav
+	{
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: $header-height;
+		position: fixed;
+		z-index: 999;
+		padding: 0px 15px;
+		// background: $grey-e;
+		background: $dark-green;
+		box-shadow: 0px -10px 20px 8px rgba(0, 0, 0, 0.5);
+
+		.nav-inner
+		{
+			display: flex;
+			align-items: center;
+			width: 100%;
+			max-width: 1200px;
+			position: relative;
+			margin: auto;
+
+			.logo-container
+			{
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				height: $header-height;
+				// position: absolute;
+				top: 0px;
+				left: 15px;
+
+				.logo
+				{
+					width: 60px;
+					height: auto;
+				}
+			}
+
+			.nav-menu
+			{
+				position: absolute;
+				right: 0px;
+
+				@media(max-width: $breakpoint-large)
+				{
+					display: none;
+				}
+
+				li 
+				{
+					display: inline-block;
+					margin: 0px 10px;
+
+					a 
+					{
+						padding: 5px 10px;
+						// text-transform: uppercase;
+						font-family: 'ScienceFair';
+						font-size: 16px;
+						letter-spacing: 1px;
+						color: $white;
+						opacity: 0.8;
+						transition: opacity 0.2s linear;
+
+						&:hover
+						{
+							opacity: 1;
+						}
+					}
+				}
+			}
+			
+			.hamburger-container
+			{
+				right: 0px;
+				transform: scaleX(-1);
+				transition: transform 0.2s ease-in-out;
+
+				&.active
+				{
+					transform: none;
+				}
+
+				@media(min-width: $breakpoint-large)
+				{
+					display: none;
+				}
+			}
+		}
+	}
+}

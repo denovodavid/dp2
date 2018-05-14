@@ -1,0 +1,42 @@
+/* Template: 
+	<div class="banner">
+      <div class="inner">
+        <div class="banner-title">
+          <span>Banner Title</span>
+        </div>
+      </div>
+    </div>
+*/
+
+.banner
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: $banner-height;
+	// background: $grey-c;
+	background: $green;
+	cursor: default;
+
+	>.inner
+	{
+		text-align: center;
+
+		.banner-title
+		{
+			font-family: 'ScienceFair';
+			font-size: 50px;
+			letter-spacing: 5px;
+			color: $white;
+		}
+
+		.subtext
+		{
+			max-width: 50%;
+			margin: auto;
+			font-family: 'Lato';
+			font-size: 16px;
+			color: $white;
+		}
+	}
+}

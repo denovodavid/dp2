@@ -1,0 +1,11 @@
+.content-block
+{
+	padding: 80px 0px;
+
+	&.centered
+	{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}

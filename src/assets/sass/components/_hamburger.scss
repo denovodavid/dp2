@@ -1,0 +1,75 @@
+.hamburger-container
+{
+	$hamburger-color: $white;
+	$hamburger-segment-height: 5px;
+	$hamburger-segment-spacing: 8px;
+	$hamburger-width: 50px;
+	$hamburger-height: ($hamburger-segment-height * 3) + ($hamburger-segment-spacing * 2);
+
+	width: $hamburger-width;
+	height: $hamburger-height;
+	position: absolute;
+	
+	.hamburger
+	{
+		display: flex;
+		align-items: center;
+		position: relative;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+		transform: scaleX(-1);
+
+		.hamburger-segment
+		{
+			width: $hamburger-width;
+			height: $hamburger-segment-height;
+			position: absolute;
+			background: $hamburger-color;
+			transition: all 0.2s linear;
+
+			&.segment-1
+			{
+				top: 0px;
+			}
+
+			&.segment-2
+			{
+
+			}
+
+			&.segment-3
+			{
+				bottom: 0px;
+			}
+		}
+
+
+		&:hover,
+		&.active
+		{
+
+			.hamburger-segment
+			{
+				&.segment-1
+				{
+					width: $hamburger-width * 0.4;
+					top: 6px;
+					transform: rotate(-40deg);
+				}
+
+				&.segment-2
+				{
+					border-radius: 2px;
+				}
+
+				&.segment-3
+				{
+					width: $hamburger-width * 0.4;
+					bottom: 6px;
+					transform: rotate(40deg);
+				}
+			}
+		}
+	}
+}

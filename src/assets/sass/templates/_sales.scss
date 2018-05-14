@@ -1,0 +1,36 @@
+#sales.page
+{
+	.form-container
+	{
+		.buttons-container
+		{
+			button
+			{
+				&#sales-edit-button
+				{
+					float: right;
+				}
+			}
+		}
+	}
+
+	.table-container
+	{
+		table
+		{
+			tbody
+			{
+				tr 
+				{
+					td
+					{
+						&:first-child
+						{
+							text-align: center;
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+.row
+{
+	display: flex;
+	align-items: stretch;
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
+
+	.column
+	{
+		width: 100%;
+		padding: 0px 15px;
+
+		&.half
+		{
+			display: inline-block;
+			width: 50%;
+		}
+	}
+}

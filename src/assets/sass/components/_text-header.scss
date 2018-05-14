@@ -1,0 +1,19 @@
+.text-header
+{
+	max-width: 800px;
+	margin: auto;
+	padding: 80px 0px 50px;
+	text-align: center;
+
+	p
+	{
+		font-size: 22px;
+		line-height: 28px;
+		color: $dark-green;
+
+		&.lead-text
+		{
+			color: $black;
+		}
+	}
+}

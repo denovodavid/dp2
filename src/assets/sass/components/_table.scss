@@ -1,0 +1,70 @@
+table
+{
+	width: 100%;
+	margin: auto;
+  border: 1px solid $grey-a;
+  border-radius: 4px;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  thead,
+  tbody,
+  tfoot
+	{
+		border: none;
+
+		tr
+		{
+      border: none;
+
+			th,
+			td
+			{
+				border: none;
+				padding: 5px 15px;
+				// font-size: 14px;
+
+				&:nth-child(4)
+				{
+					text-align: center;
+				}
+			}
+		}
+	}
+
+	thead
+	{
+		tr
+		{
+			th
+			{
+        border-bottom: 1px solid $grey-a;
+			}
+		}
+	}
+
+	tbody
+	{
+		tr
+		{
+			td
+			{
+				&:last-child
+				{
+				}
+			}
+		}
+  }
+
+  tfoot
+  {
+    tr
+    {
+      th
+      {
+        border-top: 1px solid $grey-a;
+      }
+    }
+  }
+
+}
