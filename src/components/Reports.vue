@@ -27,6 +27,12 @@
             :chart-data="monthlySalesChartData"
             :options="monthlySalesChartOptions"
           />
+          <a
+            :href="monthlySalesCsvDataUri"
+            download="monthlySales.csv"
+          >
+            Download CSV
+          </a>
         </div>
         <hr>
         <div class="form-container">
@@ -246,7 +252,7 @@ export default {
               }
             })
             .sort((a, b) => {
-              return df.isBefore(a.x, b.x)
+              return df.isAfter(a.x, b.x)
             })
         }]
       }
@@ -262,6 +268,13 @@ export default {
           }]
         }
       }
+    },
+    monthlySalesCsvDataUri () {
+      const data = this.monthlySalesChartData.datasets[0].data
+      const headingLine = data.map(point => point.x).join(',')
+      const dataLine = data.map(point => point.y).join(',')
+      const csvString = [headingLine, dataLine].join('\n')
+      return 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvString)
     },
     getSales () {
       return this.$root.sales.filter(sale => {
