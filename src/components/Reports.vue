@@ -1,5 +1,12 @@
 <template>
   <div id="reports" class="page">
+    <div class="banner">
+      <div class="inner">
+        <div class="banner-title">
+          <span>Reports</span>
+        </div>
+      </div>
+    </div>
     <div class="content-block centered">
       <div class="inner">
         <h1>Item</h1>
@@ -31,7 +38,7 @@
         />
         <a
           :href="monthlyItemSalesCsvDataUri"
-          download="monthlySales.csv"
+          download="monthlyItemSales.csv"
         >
           Download CSV
         </a>
@@ -97,9 +104,19 @@
           <br>
           <p>Average Monthly Sales: {{ averageMonthlyCategorySales | money }}<br><small>(over the last 12 months)</small></p>
           <p>Previous Month Sales: {{ lastMonthCategorySales | money }}</p>
-          <h2>Predicted Monthly Sales: {{ predictedMonthlyCategorySales | money }}</h2>
+          <p><b>Predicted Monthly Sales: {{ predictedMonthlyCategorySales | money }}</b></p>
         </div>
-        <hr>
+        <line-chart
+          :chart-data="monthlyCategorySalesChartData"
+          :options="monthlyCategorySalesChartOptions"
+          :height="100"
+        />
+        <a
+          :href="monthlyCategorySalesCsvDataUri"
+          download="monthlyCategorySales.csv"
+        >
+          Download CSV
+        </a>
       </div>
     </div>
   </div>
@@ -244,6 +261,47 @@ export default {
       // Regression towards the mean
       return this.lastMonthCategorySales +
         (this.averageMonthlyCategorySales - this.lastMonthCategorySales) / 2
+    },
+    monthlyCategorySalesChartData () {
+      const months = []
+      for (let i = 0; i < 12; i++) {
+        months[11 - i] = df.subMonths(endDate, i).toISOString().slice(0, 7)
+      }
+      return {
+        labels: months,
+        datasets: [{
+          label: this.selectedCategory,
+          data: Object.entries(this.monthlyCategorySales)
+            .map(([month, sales]) => {
+              return {
+                x: new Date(month),
+                y: sumBy(sales, sale => sale.quantity * sale.priceEach)
+              }
+            })
+            .sort((a, b) => {
+              return df.isAfter(a.x, b.x)
+            })
+        }]
+      }
+    },
+    monthlyCategorySalesChartOptions () {
+      return {
+        scales: {
+          xAxes: [{
+            type: 'time',
+            time: {
+              unit: 'month'
+            }
+          }]
+        }
+      }
+    },
+    monthlyCategorySalesCsvDataUri () {
+      const data = this.monthlyCategorySalesChartData.datasets[0].data
+      const headingLine = data.map(point => point.x).join(',')
+      const dataLine = data.map(point => point.y).join(',')
+      const csvString = [headingLine, dataLine].join('\n')
+      return 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvString)
     },
     getSales () {
       return this.$root.sales.filter(sale => {
